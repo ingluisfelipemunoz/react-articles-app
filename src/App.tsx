@@ -1,15 +1,17 @@
 import './App.css'
+import Page from './shared/ui/Page'
 
 function App() {
   return (
-    <>
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 text-slate-900">
-      <h1 className="text-3xl font-bold mb-4 text-brand">Tailwind v4 funcionando 🎨</h1>
-      <button className="px-4 py-2 rounded-lg bg-brand text-white hover:bg-brand/80 transition">
-        Tailwdind test
-      </button>
-    </div>
-    </>
+    <Page>
+      <h1 className="text-2xl font-bold mb-4">Articles App</h1>
+      <p className="mb-2">
+        App Working...
+      </p>
+      <div className="p-4 rounded-xl border bg-white shadow-sm">
+        <span className="inline-block rounded bg-blue-600 text-white px-3 py-1">ArticlesBadge</span>
+      </div>
+    </Page>
   )
 }
 
