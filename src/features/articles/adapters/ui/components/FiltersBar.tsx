@@ -51,6 +51,10 @@ export function FiltersBar() {
                     {[5,10,25,50].map(x => (<option key={x} value={x}>{x}</option>))}
                 </select>
             </div>
+
+            <div className="ml-auto text-xs text-slate-500">
+                Pagina actual: <span className="font-semibold">{page}</span>
+            </div>
         </div>
     );
 }
