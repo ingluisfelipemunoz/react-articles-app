@@ -13,7 +13,7 @@ export function FiltersBar() {
     }, [categories, categoryId]);
 
     return (
-        <div className="flex flex-wrap items-end gap-3">
+        <div className="flex flex-wrap items-end gap-3 border-b pb-2">
             <div className="flex flex-col">
                 <label className="text-xs font-medium mb-1">Buscar</label>
                 <input value={q} onChange={(e) => set({q: e.target.value, page: 1})} className="px-3 py-2 rounded-lg border w-64" placeholder="Titulo o Contenido..."/>
