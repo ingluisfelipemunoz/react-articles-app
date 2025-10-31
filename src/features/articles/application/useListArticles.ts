@@ -1,11 +1,20 @@
+import { useQuery } from "@tanstack/react-query";
 import type { Paginated, Article } from "../domain/types";
+import { articlesService } from "../adapters/http/articlesService";
 
-export function useListArticles(_params: {
+export type ListParams = {
   page: number;
   pageSize: number;
   q?: string;
   categoryId?: string;
   subcategoryId?: string;
-}): { data?: Paginated<Article>; isLoading: boolean; error?: unknown } {
-  return { data: undefined, isLoading: false, error: undefined };
+};
+
+export function useListArticles(_params: ListParams) {
+  return useQuery<Paginated<Article>, Error>({
+    queryKey: ["articles", _params],
+    queryFn: () => articlesService.list(_params),
+    staleTime: 60_000,
+    placeholderData: (prev) => prev,
+  });
 }
