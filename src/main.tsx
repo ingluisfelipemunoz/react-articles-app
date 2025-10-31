@@ -7,9 +7,11 @@ import { AppProviders } from './app/providers.tsx'
 async function enableMocking() {
   if(import.meta.env.DEV) {
     const { worker } = await import("./mocks/browser.ts");
-    await worker.start({
+    return worker.start({
       onUnhandledRequest: "bypass",
-      serviceWorker: {url: "/mockServiceWorker.js"}
+      serviceWorker: {
+        url: "/mockServiceWorker.js"
+      },
     });
   }
 }
