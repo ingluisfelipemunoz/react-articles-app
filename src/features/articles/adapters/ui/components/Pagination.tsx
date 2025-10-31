@@ -6,7 +6,7 @@ type Props = {
 }
 
 export function Pagination({ page, pageSize, total, onPageChange } : Props) {
-    const totalPages = Math.max(1, Math.ceil(total / pageSize));
+    const totalPages = Math.max(1, Math.ceil(total / pageSize)) || 0;
     const canGoBack = page > 1;
     const canGoNex = page < totalPages;
     return (
@@ -16,6 +16,9 @@ export function Pagination({ page, pageSize, total, onPageChange } : Props) {
             disabled={!canGoBack}
             onClick={() => onPageChange( page - 1)}
             >Prev</button>
+            <span className="text-sm">
+                {page || 0} / {totalPages}
+            </span>
             <button 
             className="px-3 py-1 rounded border disabled:opacity-50 hover:bg-blue-600 hover:text-white"
             disabled={!canGoNex}
