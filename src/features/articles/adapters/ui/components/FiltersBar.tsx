@@ -35,7 +35,11 @@ export function FiltersBar() {
                 <select value={subcategoryId} onChange={(e) => set({subcategoryId: e.target.value || undefined, page: 1})}
                     className="px-3 py-2 rounded-lg border w-56 bg-white disabled:bg-gray-300"
                     disabled={!categoryId || subcategories.length === 0}
-                    ></select>
+                    >
+                        <option value="">Todas</option>
+                        {subcategories?.map(sub => (<option key={sub.id} value={sub.id}>{sub.name}</option>))}
+
+                    </select>
             </div>
         </div>
     );
