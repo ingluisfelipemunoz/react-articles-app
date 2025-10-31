@@ -48,7 +48,7 @@ export function FiltersBar() {
                 value={pageSize}
                 onChange={(e) => set({pageSize: Number(e.target.value), page: 1})}
                 >
-                    {[5,10,25,50].map(x => (<option key={x} value={x}>{x}</option>))}
+                    {[1,5,10,25,50].map(x => (<option key={x} value={x}>{x}</option>))}
                 </select>
             </div>
 
