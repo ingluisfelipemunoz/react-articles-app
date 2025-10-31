@@ -26,7 +26,7 @@ export default function ArticlesListPage() {
                 {data.items.map(item => (<ArticleCard key={item.id} article={item}/>))}
             </div>)}
             </>)}
-            <div className="mt-6 flex justify-end"><Pagination/></div>
+            <div className="mt-6 flex justify-end"><Pagination page={data?.page || 0} pageSize={data?.pageSize || 0} total={data?.total || 0} onPageChange={(next) => set({page: next})}/></div>
         </Page>
     );
 }
