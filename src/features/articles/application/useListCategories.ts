@@ -6,5 +6,6 @@ export function useListCategories() {
   return useQuery<Category[], Error>({
     queryKey: ["categories"],
     queryFn: () => articlesService.categories(),
+    staleTime: 5 * 60_000,
   });
 }
