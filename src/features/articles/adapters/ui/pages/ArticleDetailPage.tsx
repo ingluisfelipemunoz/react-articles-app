@@ -1,5 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useGetArticle } from "../../../application/useGetArticle";
+import { FavoriteButton } from "../components/FavoriteButton";
+import { RatingStars } from "../components/RatingStars";
 
 export default function ArticleDetailPage() {
   const { id } = useParams();
@@ -20,23 +22,19 @@ export default function ArticleDetailPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">{data.title}</h1>
         <div className="flex items-center gap-2">
-          <Link
-            to={`/articles/${data.id}/edit`}
-            className="px-3 py-1 rounded bg-gray-900 text-white text-sm"
-          >
+          <FavoriteButton articleId={data.id} />
+          <Link to={`/articles/${data.id}/edit`} className="px-3 py-1 rounded bg-gray-900 text-white text-sm">
             Editar
           </Link>
-          <Link
-            to="/articles"
-            className="px-3 py-1 rounded border text-sm"
-          >
+          <Link to="/articles" className="px-3 py-1 rounded border text-sm">
             Volver
           </Link>
         </div>
       </div>
 
-      <div className="text-sm text-slate-500">
-        Rating: <span className="font-semibold">{data.ratingAvg.toFixed(1)}</span>
+      <div className="flex items-center gap-4 text-sm text-slate-600">
+        <span>Promedio: <strong>{data.ratingAvg.toFixed(1)}</strong></span>
+        <div><RatingStars articleId={data.id} /></div>
       </div>
 
       <article className="p-4 rounded-xl border bg-white shadow-sm">
