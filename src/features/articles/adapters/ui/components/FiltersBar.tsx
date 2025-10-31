@@ -41,6 +41,16 @@ export function FiltersBar() {
 
                     </select>
             </div>
+
+            <div className="flex flex-col">
+                <label className="text-sm font-medium mb-1">Tamanio de pagina</label>
+                <select className="px-3 py-2 rounded-lg border bg-white"
+                value={pageSize}
+                onChange={(e) => set({pageSize: Number(e.target.value), page: 1})}
+                >
+                    {[5,10,25,50].map(x => (<option key={x} value={x}>{x}</option>))}
+                </select>
+            </div>
         </div>
     );
 }
