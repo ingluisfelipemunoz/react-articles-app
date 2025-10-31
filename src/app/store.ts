@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import ui from "../features/articles/store/uiSlice";
+import favorites from "../features/articles/store/favoritesSlice";
+import ratings from "../features/articles/store/ratingSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: { ui, favorites, ratings },
   devTools: true,
 });
 
