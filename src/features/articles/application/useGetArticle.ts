@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { Article } from "../domain/types";
 import { articlesService } from "../adapters/http/articlesService";
 
-export function useGetArticle(_id: string): {
+export function useGetArticle(_id: string | undefined): {
   data?: Article;
   isLoading: boolean;
   error?: unknown;
