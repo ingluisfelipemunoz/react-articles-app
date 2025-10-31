@@ -34,7 +34,7 @@ export default function ArticlesListPage() {
             {!isLoading && !error && data && (<>
             {
             data.items.length === 0 ? 
-            (<div className="p4 rounded-xl border bg-white">Sin resultados...</div>) 
+            (<div className="p4 rounded-xl border bg-white p-3">Sin resultados...</div>) 
             : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg-grid-cols-3 gap-4">
                 {data.items.map(item => (<ArticleCard key={item.id} article={item}/>))}
