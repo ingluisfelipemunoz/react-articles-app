@@ -6,6 +6,9 @@ import { articlesDB, categories, filterArticles, paginate } from "./data";
 
 export const handlers = [
   // Listado con filtros y paginacion
+  //fetch('/api/articles?page=1&pageSize=10')
+  //fetch('/api/articles?page=1&pageSize=10&__error=500').then(x => x.json()).then(console.log)
+  //fetch('/api/articles/999?__error=404').then(x => x.json()).then(console.log)
   http.get("/api/articles", ({ request }) => {
     const url = new URL(request.url);
     const error = url.searchParams.get("__error");
@@ -43,7 +46,7 @@ export const handlers = [
 
   // Crear
   http.post("/api/articles", async ({ request }) => {
-    const body = await request.json() as Partial<Article> & {
+    const body = (await request.json()) as Partial<Article> & {
       title: string;
       body: string;
       categoryId: string;
@@ -61,7 +64,7 @@ export const handlers = [
   // Editar
   http.put("/api/articles/:id", async ({ params, request }) => {
     const id = String(params.id);
-    const body = await request.json() as Partial<Article> & {
+    const body = (await request.json()) as Partial<Article> & {
       title: string;
       body: string;
       categoryId: string;
