@@ -14,6 +14,9 @@ export default function ArticlesListPage() {
         <Page>
             <div className="flex items-center justify-between mb-4">
                 <h1 className="text-2xl font-bold">Articulos</h1>
+                <a href="/articles/new" className="px-3 py-1 rounded bg-gray-900 text-white text-sm">
+                    Crear Articulo
+                </a>
             </div>
             <div className="mb-4"><FiltersBar/></div>
 
