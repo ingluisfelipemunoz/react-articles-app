@@ -23,6 +23,12 @@ export default function ArticlesListPage() {
                     <div key={i} className="rounded-xl border bg-white p-4 shadow-sm animate-pulse h-30"></div>))}
             </div>)}
 
+            {/* mensaje de error */}
+            {error && !isLoading && (
+                <div className="p-4 rounded-xl border bg-red-50 text-red-700">
+                    Error al intentar cargar los articulos: {error.message}
+                </div>)}
+
 
             {/* lista de articulos */}
             {!isLoading && !error && data && (<>
