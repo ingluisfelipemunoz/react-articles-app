@@ -21,12 +21,16 @@ export interface ArticlesServicePort {
   categories(): Promise<Category[]>;
 }
 
-function toQuery(params: Record<string, string | number | undefined> | ListParams) {
+function toQuery(
+  params: Record<string, string | number | undefined> | ListParams,
+): string {
   const sp = new URLSearchParams();
-  Object.entries(params).forEach(([k, v]) => {
-    if (v !== undefined && v !== "") sp.set(k, String(v));
-    return sp.toString();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== "") {
+      sp.set(key, String(value));
+    }
   });
+  return sp.toString();
 }
 
 export const articlesService: ArticlesServicePort = {
