@@ -3,7 +3,7 @@ import { useArticlesParams } from "../../../application/useArticlesParams";
 import { useListCategories } from '../../../application/useListCategories';
 
 export function FiltersBar() {
-    const {page, pageSize, q, categoryId, subcategoryId, set} = useArticlesParams();
+    const {page, pageSize, q, categoryId, subcategoryId, showOnlyFavorites, set} = useArticlesParams();
     const {data: categories, isLoading} = useListCategories();
 
 
@@ -50,6 +50,15 @@ export function FiltersBar() {
                 >
                     {[1,5,10,25,50].map(x => (<option key={x} value={x}>{x}</option>))}
                 </select>
+            </div>
+
+            <div className="flex flex-col">
+                <input type="checkbox"
+                    checked={showOnlyFavorites}
+                    onChange={(e) => set({showOnlyFavorites: e.target.checked ? "true" : undefined})}
+                    className="w-4 h-4 mr-2"
+                />
+                <label className="text-sm font-medium mb-1">Solo favoritos</label>
             </div>
 
             <div className="ml-auto text-xs text-slate-500">

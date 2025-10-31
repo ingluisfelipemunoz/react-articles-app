@@ -1,14 +1,23 @@
+import { useAppSelector } from "../../../../../app/hooks";
 import Page from "../../../../../shared/ui/Page";
 import { useArticlesParams } from "../../../application/useArticlesParams";
 import { useListArticles } from "../../../application/useListArticles";
 import { ArticleCard } from "../components/ArticleCard";
 import { FiltersBar } from "../components/FiltersBar";
 import { Pagination } from "../components/Pagination";
+import { selectFavoritesIds } from "../../../store/selectors";
+import { useMemo } from "react";
 
 export default function ArticlesListPage() {
-    const {page, pageSize, q, categoryId, subcategoryId, set} = useArticlesParams();
+    const {page, pageSize, q, categoryId, subcategoryId, showOnlyFavorites, set} = useArticlesParams();
     const {data, isLoading, error} = useListArticles({page, pageSize, q, categoryId, subcategoryId});
-
+    const favoriteIds = useAppSelector(selectFavoritesIds);
+    const filtered = useMemo(   () => {
+        if (showOnlyFavorites && data?.items) {
+            return data.items.filter(item => favoriteIds.includes(item.id));
+        }
+        return data?.items || [];
+    }, [data, showOnlyFavorites, favoriteIds]);
 
     return (
         <Page>
@@ -36,11 +45,11 @@ export default function ArticlesListPage() {
             {/* lista de articulos */}
             {!isLoading && !error && data && (<>
             {
-            data.items.length === 0 ? 
+            filtered.length === 0 ? 
             (<div className="p4 rounded-xl border bg-white p-3">Sin resultados...</div>) 
             : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg-grid-cols-3 gap-4">
-                {data.items.map(item => (<ArticleCard key={item.id} article={item}/>))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filtered.map(item => (<ArticleCard key={item.id} article={item}/>))}
             </div>)}
             </>)}
             <div className="mt-6 flex justify-end"><Pagination page={data?.page || 0} pageSize={data?.pageSize || 0} total={data?.total || 0} onPageChange={(next) => set({page: next})}/></div>

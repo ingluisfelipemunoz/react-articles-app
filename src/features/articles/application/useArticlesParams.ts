@@ -7,6 +7,7 @@ export function useArticlesParams() {
   const q = sp.get("q") ?? "";
   const categoryId = sp.get("categoryId") ?? "";
   const subcategoryId = sp.get("subcategoryId") ?? "";
+  const showOnlyFavorites = sp.get("showOnlyFavorites") === "true";
 
   const set = (patch: Record<string, string | number | undefined>) => {
     const next = new URLSearchParams(sp);
@@ -17,5 +18,5 @@ export function useArticlesParams() {
     setSp(next, { replace: true });
   };
 
-  return { page, pageSize, q, categoryId, subcategoryId, set };
+  return { page, pageSize, q, categoryId, subcategoryId, showOnlyFavorites, set };
 }
