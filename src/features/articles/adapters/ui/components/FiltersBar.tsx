@@ -21,12 +21,21 @@ export function FiltersBar() {
 
             <div className="flex flex-col">
                 <label className="text-xs font-medium mb-1">Categoria</label>
-                <select value={categoryId} onChange={(e) => set({categoryId: e.target.value || undefined, 
+                <select className="px-3 py-2 rounded-lg border w-56 bg-white disabled:bg-gray-300"
+                value={categoryId} onChange={(e) => set({categoryId: e.target.value || undefined, 
                 subcategoryId: undefined , page: 1
-                })}>
+                })} disabled={isLoading}>
                     <option value="">Todas</option>
                     {categories?.map(c => (<option key={c.id} value={c.id}>{c.name}</option>))}
                 </select>
+            </div>
+
+            <div className="flex flex-col">
+                <label className="text-xs font-medium mb-1">Subcategoria</label>
+                <select value={subcategoryId} onChange={(e) => set({subcategoryId: e.target.value || undefined, page: 1})}
+                    className="px-3 py-2 rounded-lg border w-56 bg-white disabled:bg-gray-300"
+                    disabled={!categoryId || subcategories.length === 0}
+                    ></select>
             </div>
         </div>
     );
