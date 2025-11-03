@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "types": ["cypress", "@testing-library/cypress"],
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}
+
