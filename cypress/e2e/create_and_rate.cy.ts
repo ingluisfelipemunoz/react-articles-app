@@ -2,7 +2,14 @@
 /// <reference types="@testing-library/cypress" />
 describe("Crear artículo y calificar", () => {
   it("crea un artículo y le da rating", () => {
-    cy.visit("/articles");
+    cy.visit("/articles", {
+      onBeforeLoad(win) {
+        win.localStorage.setItem(
+          "app:auth",
+          JSON.stringify({ user: { id: "u1", name: "cypress", role: "editor" } }),
+        );
+      },
+    });
 
     // Ir a Nuevo articulo
     cy.contains("Crear Articulo").click();
