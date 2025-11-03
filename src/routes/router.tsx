@@ -4,6 +4,8 @@ import ArticlesListPage from "../features/articles/adapters/ui/pages/ArticlesLis
 import ArticlesCategoriesPage from "../features/articles/adapters/ui/pages/ArticlesCategoriesPage";
 import ArticleDetailPage from "../features/articles/adapters/ui/pages/ArticleDetailPage";
 import ArticleFormPage from "../features/articles/adapters/ui/pages/ArticleFormPage";
+import RequireAuth from "./RequireAuth";
+import LoginPage from "../features/auth/adapters/ui/LoginPage";
 
 export const router = createBrowserRouter([
     {
@@ -14,13 +16,18 @@ export const router = createBrowserRouter([
                 index: true, element: <Navigate to="articles"/>
             },
             {
+                path: "login",
+                element: <LoginPage/>
+            },
+            {
                 path: "articles",
                 children: [
                     {index: true, element: <ArticlesListPage/>},
                     {path: "categories", element: <ArticlesCategoriesPage/>},
                     {path: ":id", element: <ArticleDetailPage/>},
-                    {path: "new", element: <ArticleFormPage/>},
-                    {path: ":id/edit", element: <ArticleFormPage/>}
+
+                    {path: "new", element: (<RequireAuth><ArticleFormPage/></RequireAuth>)},
+                    {path: ":id/edit", element: (<RequireAuth><ArticleFormPage/></RequireAuth>)}
                 ]
             },
             //404
