@@ -5,7 +5,7 @@ describe("Manejo de errores 404 y 500", () => {
   });
 
   it("muestra 500 en detalle (via MSW query)", () => {
-    cy.visit("/articles/998?__error=500");
+    cy.visit("/articles/1?__error=500");
     cy.contains(/error al cargar el artículo/i).should("exist");
   });
 });
