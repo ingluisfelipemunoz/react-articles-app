@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ui from "../features/articles/store/uiSlice";
+import ui from "./uiSlice";
 import favorites from "../features/articles/store/favoritesSlice";
 import ratings from "../features/articles/store/ratingSlice";
 
