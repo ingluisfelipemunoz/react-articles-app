@@ -13,7 +13,10 @@ export type ListParams = {
 };
 
 export function useListArticles(_params: ListParams) {
-  const errorFlag = typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("__error") : null;
+  const errorFlag =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("__error")
+      : null;
   return useQuery<Paginated<Article>, Error>({
     queryKey: ["articles", _params, { __error: errorFlag }],
     queryFn: async () => {

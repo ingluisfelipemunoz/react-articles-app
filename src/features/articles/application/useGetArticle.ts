@@ -7,7 +7,10 @@ export function useGetArticle(_id: string | undefined): {
   isLoading: boolean;
   error?: unknown;
 } {
-  const errorFlag = typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("__error") : null;
+  const errorFlag =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("__error")
+      : null;
   return useQuery<Article, Error>({
     queryKey: ["article", _id, { __error: errorFlag }],
     queryFn: () => {
