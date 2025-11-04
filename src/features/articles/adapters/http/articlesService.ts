@@ -36,12 +36,25 @@ function toQuery(
 export const articlesService: ArticlesServicePort = {
   async list(params) {
     const queryString = toQuery(params);
-    const res = await fetch(`/api/articles?${queryString}`);
+    const currentSearch = typeof window !== "undefined" ? window.location.search : "";
+    const currentError = currentSearch
+      ? new URLSearchParams(currentSearch).get("__error")
+      : null;
+    const errorQS = currentError ? `__error=${encodeURIComponent(currentError)}` : "";
+    const finalQS = [queryString, errorQS].filter(Boolean).join("&");
+    const res = await fetch(`/api/articles?${finalQS}`);
     if (!res.ok) throw new Error(`List failed: ${res.status}`);
     return res.json();
   },
   async get(id: string) {
-    const res = await fetch(`/api/articles/${id}`);
+    const currentSearch = typeof window !== "undefined" ? window.location.search : "";
+    const currentError = currentSearch
+      ? new URLSearchParams(currentSearch).get("__error")
+      : null;
+    const errorSuffix = currentError
+      ? `?__error=${encodeURIComponent(currentError)}`
+      : "";
+    const res = await fetch(`/api/articles/${id}${errorSuffix}`);
     if (!res.ok) throw new Error(`Get failed ${res.status}`);
     return res.json();
   },

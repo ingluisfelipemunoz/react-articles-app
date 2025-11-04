@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useAppSelector } from "../app/hooks";
 
-export default function RequireAuth({ children }: { children: JSX.Element }) {
+export default function RequireAuth({ children }: { children: React.ReactNode }) {
   const user = useAppSelector(s => s.auth.user);
   const location = useLocation();
   if (!user) {
